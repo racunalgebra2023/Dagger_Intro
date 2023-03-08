@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dagger Intro</string>
+    <string name="param1">Dagger Intro param1</string>
+    <string name="param2">Dagger Intro param2</string>
+</resources>
