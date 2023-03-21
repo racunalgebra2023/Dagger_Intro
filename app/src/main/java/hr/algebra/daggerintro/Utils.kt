@@ -1,8 +1,9 @@
 package hr.algebra.daggerintro
 
 import android.widget.EditText
+import javax.inject.Inject
 
-class Utils {
+class Utils @Inject constructor( ) {
 
     private val PI : Double = 3.14
 

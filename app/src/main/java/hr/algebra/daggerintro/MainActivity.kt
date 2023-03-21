@@ -4,12 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import hr.algebra.daggerintro.databinding.ActivityMainBinding
+import hr.algebra.daggerintro.root.App
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity( ) {
 
     private lateinit var binding : ActivityMainBinding
-    private lateinit var utils        : Utils
-    private lateinit var toastService : ToastService
+    @Inject
+    lateinit var toastService : ToastService
+
+    @Inject
+    lateinit var utils        : Utils
+    @Inject
+    lateinit var lista        : List< Int >
+    @Inject
+    lateinit var mojText      : String
 
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate( savedInstanceState )
@@ -20,6 +29,9 @@ class MainActivity : AppCompatActivity( ) {
         utils        = Utils( )
         toastService = ToastService( application )
 */
+        ( applicationContext as App ).appComponent?.inject(this)
+
+
         binding.bAdd.setOnClickListener {
             val num1 = utils.getNumber( binding.etNum1 )
             val num2 = utils.getNumber( binding.etNum2 )
@@ -44,9 +56,13 @@ class MainActivity : AppCompatActivity( ) {
         }
 
         binding.bToast.setOnClickListener {
+
             Toast
                 .makeText( this, "${ toastService.generateFromRes( R.string.app_name) }", Toast.LENGTH_SHORT )
                 .show( )
+
         }
+
     }
+
 }
